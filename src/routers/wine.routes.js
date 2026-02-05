@@ -5,6 +5,6 @@ import * as wineController from "../controllers/wine.controller.js";
 const router = express.Router();
 
 router.get("/wines", wineController.getAllWines);
-router.get("/wines/:id", wineController.getAllWines);
+router.get("/wines/:id", wineController.getWineById);
 
 export default router;
