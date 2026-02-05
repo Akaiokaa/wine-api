@@ -11,7 +11,7 @@ export const getAllWines = (req, res) => {
     res.status(200).json({
         message: "Wines retrieved successfully.",
         data: wines
-    })
+    });
 }
 
 export const getWineById = (req, res) => {
@@ -29,6 +29,22 @@ export const getWineById = (req, res) => {
         message:"Wine found.",
         data: wine
     });
+}
+export const createWine = (req, res) => {
+    const { name, year } = req.body;
+
+    if(!name || !year) {
+        return res.status(400).json({
+            message: "wine name and year are required.",
+            data: null
+        })
+    }
+    const newWine = wineService.create({name, year});
+
+    res.status(201).json({
+        message: "Wine created successfully",
+        data: newWine
+    })
 }
 // export const wineInfo = (req, res) => {
     
