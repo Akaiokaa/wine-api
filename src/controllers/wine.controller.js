@@ -1,9 +1,5 @@
 //place controller functions here...
 import * as wineService from './../services/wine.service.js'
-// res.render("default", {
-//     title: "MVC Starter App",
-//     subtitle: "Express + EJS + Static Assets"
-// });
 
 export const getAllWines = (req, res) => {
     const wines = wineService.getAll();
@@ -70,6 +66,33 @@ export const updateWine = (req, res) => {
         data: updatedWine
     })
 }
+
+export const deleteWine = (req, res) => {
+    const id = Number(req.params.id);
+    const deleted = wineService.remove(id);
+
+    if(!deleted){
+        return res.status(404).json({
+            message: `Wine with id ${id} not found.`,
+            data: null
+        });
+    }
+    res.status(200).json({
+        message:"Wine deleted successfully.",
+        data:null
+    })
+}
+
+/*
+{
+    "message": "Wine found.",
+    "data": {
+        "id": 3,
+        "name": "Pinot Noir",
+        "year": 2019
+    }
+}
+*/
 // export const wineInfo = (req, res) => {
     
 // }
